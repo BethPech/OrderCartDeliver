@@ -2,6 +2,7 @@ package ru.netology.web;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.Date;
 
 import static com.codeborne.selenide.Condition.*;
@@ -19,13 +20,13 @@ public class OrderCartDeliverTest {
         open("http://localhost:9999");
         $$("input__control");
         $("[placeholder='Город']").setValue("Москва");
-        $("[placeholder='Дата встречи']").setValue(str);
+        $("[placeholder='Дата встречи']").val(str);
         $("[name='name']").setValue("Иванов-Петров Павел");
         $("[name='phone']").setValue("+98765432145");
         $("[class = 'checkbox__box']").click();
         $$("button").find(exactText("Забронировать")).click();
         $(withText("Успешно!")).shouldBe(exist);
-        $(byText("Успешно!")).waitUntil(visible, 11000);
+        $(byText("Успешно!")).shouldBe(visible, Duration.ofSeconds(11));
     }
 
     @Test
@@ -33,12 +34,12 @@ public class OrderCartDeliverTest {
         open("http://localhost:9999");
         $$("input__control");
         $("[placeholder='Город']").setValue("Москва");
-        $("[placeholder='Дата встречи']").setValue(str);
+        $("[placeholder='Дата встречи']").val(str);
         $("[name='name']").setValue("ванов-етров авел");
         $("[name='phone']").setValue("+98765432145");
         $("[class = 'checkbox__box']").click();
         $$("button").find(exactText("Забронировать")).click();
         $(withText("Успешно!")).shouldBe(exist);
-        $(byText("Успешно!")).waitUntil(visible, 11000);
+        $(byText("Успешно!")).shouldBe(visible, Duration.ofSeconds(11));
     }
 }
